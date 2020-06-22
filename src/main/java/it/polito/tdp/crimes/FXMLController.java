@@ -5,8 +5,11 @@
 package it.polito.tdp.crimes;
 
 import java.net.URL;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import it.polito.tdp.crimes.model.Arco;
 import it.polito.tdp.crimes.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,13 +28,13 @@ public class FXMLController {
     private URL location;
 
     @FXML // fx:id="boxAnno"
-    private ComboBox<?> boxAnno; // Value injected by FXMLLoader
+    private ComboBox<Integer> boxAnno; // Value injected by FXMLLoader
 
     @FXML // fx:id="boxMese"
-    private ComboBox<?> boxMese; // Value injected by FXMLLoader
+    private ComboBox<Integer> boxMese; // Value injected by FXMLLoader
 
     @FXML // fx:id="boxGiorno"
-    private ComboBox<?> boxGiorno; // Value injected by FXMLLoader
+    private ComboBox<Integer> boxGiorno; // Value injected by FXMLLoader
 
     @FXML // fx:id="btnCreaReteCittadina"
     private Button btnCreaReteCittadina; // Value injected by FXMLLoader
@@ -47,12 +50,76 @@ public class FXMLController {
 
     @FXML
     void doCreaReteCittadina(ActionEvent event) {
-
+    	if (boxAnno.getItems().isEmpty()) {
+    	    txtResult.setText("Prima crea il grafo!");
+    	    return;
+    	}
+    	if (boxAnno.getValue() == null) {
+    		txtResult.setText("Devi scegliere un anno");
+    	    return;
+    	}
+    	model.creaGrafo(boxAnno.getValue());
+    	List <Arco> archi = model.getDistanzeVertici();
+    	
+    	txtResult.clear();
+    	for (Arco a : archi) {
+    		txtResult.appendText(a+"\n");
+    	}
+    	btnSimula.setDisable(false);
+    	List <Integer> giorni = new LinkedList<Integer>();
+    	List <Integer> mesi = new LinkedList<Integer>();
+    	
+    	for (int i = 1; i < 13 ; i++) {
+    		mesi.add(i);
+    	}
+    	for (int i = 1; i < 32 ; i++) {
+    		giorni.add(i);
+    	}
+    	
+    	boxGiorno.getItems().clear();
+    	boxMese.getItems().clear();
+    	
+    	boxGiorno.getItems().addAll(giorni);
+    	boxMese.getItems().addAll(mesi);
     }
 
     @FXML
     void doSimula(ActionEvent event) {
-
+    	txtResult.clear();
+    	if (boxGiorno.getItems().isEmpty()) {
+    	    txtResult.setText("Prima crea il grafo!");
+    	    return;
+    	}
+    	if (boxGiorno.getValue() == null) {
+    		txtResult.setText("Devi scegliere un opzione");
+    	    return;
+    	}
+    	if (boxMese.getItems().isEmpty()) {
+    	    txtResult.setText("Prima crea il grafo!");
+    	    return;
+    	}
+    	if (boxMese.getValue() == null) {
+    		txtResult.setText("Devi scegliere un opzione");
+    	    return;
+    	}
+    	String raw = txtN.getText();
+    	int n;
+    	try {
+    		n = Integer.parseInt(raw);
+    		
+    	}
+    	catch (NumberFormatException e) {
+    		txtResult.appendText("Il parametro inserito non è un numero\n");
+    		return;
+    	}
+    	if (n < 1 || n > 10) {
+    		txtResult.appendText("Il numero inserito deve essere compreso tra 1 e 10\n");
+    		return;
+    	}
+    	model.simula(boxGiorno.getValue(), boxMese.getValue(), boxAnno.getValue(), n);
+    	List <Integer> stat = model.getStatSim();
+    	
+    	txtResult.setText("Gestiti "+stat.get(1)+" ("+stat.get(2)+"), gestiti male "+stat.get(0));
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
@@ -69,5 +136,8 @@ public class FXMLController {
     
     public void setModel(Model model) {
     	this.model = model;
+    	boxAnno.getItems().clear();
+    	boxAnno.getItems().addAll(model.getDistinctAnni());
+    	btnSimula.setDisable(true);
     }
 }
