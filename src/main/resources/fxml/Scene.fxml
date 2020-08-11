@@ -2,53 +2,1841 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="392.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.crimes.FXMLController">
+<BorderPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: white; -fx-border-color: orange; -fx-border-width: 2px;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.covid.FXMLController">
    <top>
-      <Label prefWidth="229.0" text="2019-06-05-simulazione" textAlignment="CENTER" BorderPane.alignment="CENTER" />
+      <Label alignment="CENTER" text="Quarantine Simulator" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Corbel" size="25.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets bottom="10.0" top="10.0" />
+         </BorderPane.margin></Label>
    </top>
    <center>
-      <VBox prefHeight="374.0" prefWidth="360.0" BorderPane.alignment="CENTER">
-         <children>
-            <GridPane alignment="CENTER" prefHeight="119.0" prefWidth="345.0">
-              <columnConstraints>
-                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="136.0" minWidth="10.0" prefWidth="77.0" />
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="316.0" minWidth="10.0" prefWidth="150.0" />
-                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="281.0" minWidth="8.0" prefWidth="124.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Label alignment="CENTER" text="Anno" />
-                  <Label text="Mese" GridPane.rowIndex="1" />
-                  <Label text="Giorno" GridPane.rowIndex="2" />
-                  <ComboBox fx:id="boxAnno" prefWidth="150.0" GridPane.columnIndex="1" />
-                  <ComboBox fx:id="boxMese" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <ComboBox fx:id="boxGiorno" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Button fx:id="btnCreaReteCittadina" mnemonicParsing="false" onAction="#doCreaReteCittadina" text="Rete Cittadina" GridPane.columnIndex="2" />
-                  <Button fx:id="btnSimula" mnemonicParsing="false" onAction="#doSimula" text="Simula" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <Label text="N" GridPane.rowIndex="3" />
-                  <TextField fx:id="txtN" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-               </children>
-               <VBox.margin>
-                  <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
-               </VBox.margin>
-            </GridPane>
-            <TextArea fx:id="txtResult" prefHeight="222.0" prefWidth="360.0" />
-         </children>
-      </VBox>
+      <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab fx:id="tabHome" text="Home">
+               <content>
+                  <GridPane>
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="125.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="110.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="Benvenuto in Quarantine Simulator!" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <font>
+                              <Font name="Segoe UI Bold Italic" size="20.0" />
+                           </font>
+                        </Label>
+                        <TextArea editable="false" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-width: 0;" text="Università:   Politecnico di Torino&#10;Corso:        Ingegneria Gestionale, percorso dell'informazione (L-8)&#10;Progetto:     Tesi di Laurea Triennale&#10;Anno:         2020&#10;Studente:     Luca Debernardi (s244685)&#10;Scopo:        Fornire uno strumento utile alla simulazione di un epidemia sul&#10;              territorio nazionale." GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Courier New Bold" size="13.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </GridPane.margin>
+                        </TextArea>
+                        <GridPane GridPane.rowIndex="4">
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="50.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="250.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Ente:">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox fx:id="boxAggregazione" onAction="#aggregazione" prefWidth="1000.0" GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </GridPane.margin>
+                              </ComboBox>
+                              <GridPane GridPane.columnIndex="2">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="170.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label text="Esecuzione:" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Preparazione:">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Precisione:" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Personalizzazione:" GridPane.rowIndex="3">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="ELEVATA" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="tPrec" text="-" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="tEsec" text="-" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="tPrep" text="-" GridPane.columnIndex="1">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <GridPane.margin>
+                                    <Insets left="20.0" right="20.0" />
+                                 </GridPane.margin>
+                              </GridPane>
+                           </children>
+                           <GridPane.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </GridPane.margin>
+                        </GridPane>
+                        <Label text="- Scegli l'unità di aggregazione:" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                           <font>
+                              <Font name="Segoe UI Italic" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label text="- Informazioni:" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Segoe UI Italic" size="17.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Button fx:id="btnCreaGrafo" mnemonicParsing="false" onAction="#creaGrafo" style="-fx-background-color: green;" text="PREPARA SIMULAZIONE" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                           <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </padding>
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets top="2.0" />
+                           </GridPane.margin>
+                        </Button>
+                     </children>
+                  </GridPane>
+               </content>
+          </Tab>
+          <Tab fx:id="tabVirus" text="Virus">
+               <content>
+                  <GridPane>
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="120.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="- Parametri del virus comuni:" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Segoe UI Italic" size="17.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <GridPane GridPane.rowIndex="3">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Durata media contagio:">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label text="Durata media malattia:" GridPane.columnIndex="2">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <TextField fx:id="txtTContagio" nodeOrientation="RIGHT_TO_LEFT" promptText="(Giorni)" GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="txtTMalattia" nodeOrientation="RIGHT_TO_LEFT" promptText="(Giorni)" GridPane.columnIndex="3">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                           </children>
+                        </GridPane>
+                        <GridPane GridPane.rowIndex="2">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Prob. B0 di contagio da contatto a rischio:">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <TextField fx:id="txtB0" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                           </children>
+                        </GridPane>
+                        <GridPane GridPane.rowIndex="6">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="130.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Fascia età [0-20]" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Fascia età (20-65]" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Fascia età (65-...]" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Tasso di sintomaticità:" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label text="Tasso di mortalità:" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <TextField fx:id="txtToMalatoScuola" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="txtToMortoPensione" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="txtToMortoLavoro" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="txtToMortoScuola" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="txtToMalatoPensione" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="txtToMalatoLavoro" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                           </children>
+                        </GridPane>
+                        <Label text="- Parametri del virus per fascia di età:" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="Segoe UI Italic" size="17.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <GridPane GridPane.rowIndex="8">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0" prefWidth="30.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <TextArea fx:id="txtResultVirus" editable="false" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-width: 0;" GridPane.columnIndex="1">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets right="10.0" />
+                                 </GridPane.margin>
+                              </TextArea>
+                              <GridPane>
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Button fx:id="btnAggiornaVirus" maxWidth="-Infinity" mnemonicParsing="false" onAction="#aggiornaVirus" prefWidth="500.0" style="-fx-background-color: green;" text="AGGIORNA" textFill="WHITE" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                       <padding>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                       </padding>
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="15.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </GridPane.margin>
+                                    </Button>
+                                    <Button fx:id="btnResetVirus" maxWidth="-Infinity" mnemonicParsing="false" onAction="#resetVirus" prefWidth="500.0" style="-fx-background-color: darkred;" text="RESET" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                       <padding>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                       </padding>
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="15.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </GridPane.margin>
+                                    </Button>
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </GridPane>
+               </content>
+          </Tab>
+            <Tab fx:id="tabContromisure" text="Contromisure">
+               <content>
+                  <GridPane>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <GridPane GridPane.rowIndex="2">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="Modifica di B0 sulla base delle misure attuate (gravità crescente): B1 = B0 * val:">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                           </children>
+                        </GridPane>
+                        <GridPane GridPane.rowIndex="3">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="130.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="Fascia età [0-20]" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Fascia età (20-65]" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Fascia età (65-...]" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Nessuna misura:" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label text="Misure preventive:" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <TextField fx:id="noScuolaScuola" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="lockLavoro" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="reducedLavoro" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="reducedScuola" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="noActPensione" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="lockScuola" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <Label text="Chiusura scuole:" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label text="Lockdown:" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <TextField fx:id="lockPensione" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="noActLavoro" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="noActScuola" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="reducedPensione" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="noScuolaPensione" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="noScuolaLavoro" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                           </children>
+                        </GridPane>
+                        <GridPane GridPane.rowIndex="5">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0" prefWidth="30.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <TextArea fx:id="txtResultContromisure" editable="false" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-width: 0;" GridPane.columnIndex="1">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets right="10.0" />
+                                 </GridPane.margin>
+                              </TextArea>
+                              <GridPane>
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Button fx:id="btnAggiornaContromisure" maxWidth="-Infinity" mnemonicParsing="false" onAction="#aggiornaContromisure" prefWidth="500.0" style="-fx-background-color: green;" text="AGGIORNA" textFill="WHITE" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                       <padding>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                       </padding>
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="15.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </GridPane.margin>
+                                    </Button>
+                                    <Button fx:id="btnResetContromisure" maxWidth="-Infinity" mnemonicParsing="false" onAction="#resetContromisure" prefWidth="500.0" style="-fx-background-color: darkred;" text="RESET" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                       <padding>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                       </padding>
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="15.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </GridPane.margin>
+                                    </Button>
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </GridPane>
+                        <Label text="- Parametri delle contromisure per fascia di età:" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Segoe UI Italic" size="17.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </content>
+            </Tab>
+            <Tab fx:id="tabMondo" text="Mondo">
+               <content>
+                  <GridPane>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="- Parametri del mondo per fascia di età:" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Segoe UI Italic" size="17.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <GridPane GridPane.rowIndex="2">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints />
+                           </rowConstraints>
+                           <children>
+                              <GridPane>
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="130.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label text="Fascia età [0-20]" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Fascia età (20-65]" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Fascia età (65-...]" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Valore % della popolazione:" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets left="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <TextField fx:id="txtPercScuola" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </GridPane.margin>
+                                    </TextField>
+                                    <TextField fx:id="txtPercPensione" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </GridPane.margin>
+                                    </TextField>
+                                    <TextField fx:id="txtPercLavoro" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </GridPane.margin>
+                                    </TextField>
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </GridPane>
+                        <GridPane GridPane.rowIndex="4">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="130.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="Fascia età [0-20]" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Fascia età (20-65]" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Fascia età (65-...]" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label text="... comuni vicini:" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label text="... altre province:" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <TextField fx:id="txtScuolaAttrComunale" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="txtPensioneAttrProvinciale" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="txtLavoroAttrProvinciale" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="txtScuolaAttrProvinciale" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="txtPensioneAttrComunale" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="txtLavoroAttrComunale" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <Label text="... altre regioni:" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label text="Non si sposta:" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <TextField fx:id="txtPensioneNoShift" editable="false" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="txtLavoroNoShift" editable="false" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="txtScuolaNoShift" editable="false" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="txtPensioneAttrRegionale" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="txtLavoroAttrRegionale" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="txtScuolaAttrRegionale" nodeOrientation="RIGHT_TO_LEFT" promptText="Intervallo valido: [0 - 1]" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                           </children>
+                        </GridPane>
+                        <GridPane GridPane.rowIndex="6">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0" prefWidth="30.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <TextArea fx:id="txtResultMondo" editable="false" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-width: 0;" GridPane.columnIndex="1">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets right="10.0" />
+                                 </GridPane.margin>
+                              </TextArea>
+                              <GridPane>
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Button fx:id="btnAggiornaMondo" maxWidth="-Infinity" mnemonicParsing="false" onAction="#aggiornaMondo" prefWidth="500.0" style="-fx-background-color: green;" text="AGGIORNA" textFill="WHITE" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                       <padding>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                       </padding>
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="15.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </GridPane.margin>
+                                    </Button>
+                                    <Button fx:id="btnResetMondo" maxWidth="-Infinity" mnemonicParsing="false" onAction="#resetMondo" prefWidth="500.0" style="-fx-background-color: darkred;" text="RESET" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                       <padding>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                       </padding>
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="15.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </GridPane.margin>
+                                    </Button>
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </GridPane>
+                        <Label text="Valori % giornalieri di popolazione che si sposta dal proprio comune verso..." GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Courier New Bold" size="13.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </content>
+            </Tab>
+            <Tab fx:id="tabSimulazione" text="Simulazione">
+               <content>
+                  <GridPane>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="- Parametri della simulazione:" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Segoe UI Italic" size="17.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <GridPane GridPane.rowIndex="2">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints />
+                           </rowConstraints>
+                           <children>
+                              <GridPane>
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="300.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="130.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label text="Tipo di simulazione da avviare:">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets left="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <ComboBox fx:id="boxTipoSimulazione" onAction="#tipoSimulazione" prefWidth="1500.0" GridPane.columnIndex="1">
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </GridPane.margin>
+                                    </ComboBox>
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </GridPane>
+                        <GridPane GridPane.rowIndex="7">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" prefWidth="30.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Button fx:id="btnResetSimulazione" maxWidth="-Infinity" mnemonicParsing="false" onAction="#resetSimulazione" prefWidth="300.0" style="-fx-background-color: darkred;" text="RESET" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <padding>
+                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="15.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Button fx:id="btnAggiornaSimulazione" maxWidth="-Infinity" mnemonicParsing="false" onAction="#aggiornaSimulazione" prefWidth="300.0" style="-fx-background-color: green;" text="AGGIORNA" textFill="WHITE" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <padding>
+                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="15.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </Button>
+                           </children>
+                        </GridPane>
+                        <GridPane GridPane.rowIndex="3">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="300.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="130.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="130.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="Condizione di terminazione:">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <ComboBox fx:id="boxTerminazione" onAction="#terminazione" prefWidth="1500.0" GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </ComboBox>
+                              <TextField fx:id="txtTerminazione" promptText="Condizione:" GridPane.columnIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                           </children>
+                        </GridPane>
+                        <GridPane GridPane.rowIndex="4">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="300.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="130.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="Sistema probabilistico: ">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <ComboBox fx:id="boxProbabilita" prefWidth="1500.0" GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </ComboBox>
+                           </children>
+                        </GridPane>
+                        <TextArea fx:id="txtResultSimulazione" editable="false" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-width: 0;" GridPane.rowIndex="6">
+                           <font>
+                              <Font name="Courier New Bold" size="13.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </GridPane.margin>
+                        </TextArea>
+                        <GridPane GridPane.rowIndex="6">
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                        </GridPane>
+                        <GridPane GridPane.rowIndex="5">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="60.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="Fascia età [0-20]" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label text="Fascia età (20-65]" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label text="Fascia età (65-...]" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label text="Inserisci nuovi contagi:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </Label>
+                              <TextField fx:id="txtNuoviScuola" nodeOrientation="RIGHT_TO_LEFT" promptText="Nuovi" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="txtNuoviPensione" nodeOrientation="RIGHT_TO_LEFT" promptText="Nuovi" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="txtNuoviLavoro" nodeOrientation="RIGHT_TO_LEFT" promptText="Nuovi" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <ComboBox fx:id="boxNuovi" prefWidth="500.0" promptText="Scegli un ente" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </ComboBox>
+                              <Label text="Rndm" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </Label>
+                              <CheckBox fx:id="randomNuovi" mnemonicParsing="false" onAction="#randomizer" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </GridPane>
+               </content></Tab>
+            <Tab fx:id="tabParametrizzata" text="Parametrizzata">
+               <content>
+                  <GridPane>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="120.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="- Parametri chiusura e limitazione ente:" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Segoe UI Italic" size="17.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <GridPane GridPane.rowIndex="4">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" prefWidth="30.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Button fx:id="btnResetParametrizzata" maxWidth="-Infinity" mnemonicParsing="false" onAction="#resetParametrizzata" prefWidth="300.0" style="-fx-background-color: darkred;" text="TERMINA SIMULAZIONE" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <padding>
+                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="15.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Button fx:id="btnStartSimulazione" maxWidth="-Infinity" mnemonicParsing="false" onAction="#startSimulazione" prefWidth="300.0" style="-fx-background-color: green;" text="AVVIA SIMULAZIONE" textFill="WHITE" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <padding>
+                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="15.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </Button>
+                           </children>
+                        </GridPane>
+                        <TextArea fx:id="txtResultParametrizzata" editable="false" prefHeight="30.0" prefWidth="200.0" promptText="Elenco contromisure inserite..." style="-fx-background-color: white; -fx-border-width: 0;" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Courier New Bold" size="13.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </GridPane.margin>
+                        </TextArea>
+                        <GridPane GridPane.rowIndex="2">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="40.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="40.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="5.0" prefWidth="5.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="Valore:" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Percentuale:" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Status:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="txtValueChiusura" nodeOrientation="RIGHT_TO_LEFT" promptText="Mai" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <Label text="Contromisura:" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox fx:id="boxStatusChiusura" prefWidth="400.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </ComboBox>
+                              <Label text="Chiusura" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="btnAddChiusura" mnemonicParsing="false" onAction="#addChiusura" style="-fx-background-color: green;" text="+" textFill="WHITE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Courier New Bold" size="15.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Button fx:id="btnRemoveChiusura" mnemonicParsing="false" onAction="#removeChiusura" style="-fx-background-color: darkred;" text="-" textFill="WHITE" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Courier New Bold" size="15.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <ComboBox fx:id="boxHandling" prefWidth="400.0" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </ComboBox>
+                              <TextField fx:id="txtValueHandling" nodeOrientation="RIGHT_TO_LEFT" promptText="Mai" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <ComboBox fx:id="boxStatusHandling" prefWidth="400.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </ComboBox>
+                              <Button fx:id="btnAddHandling" mnemonicParsing="false" onAction="#addHandling" style="-fx-background-color: green;" text="+" textFill="WHITE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Courier New Bold" size="15.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnRemoveHandling" mnemonicParsing="false" onAction="#removeHandling" style="-fx-background-color: darkred;" text="-" textFill="WHITE" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Courier New Bold" size="15.0" />
+                                 </font>
+                              </Button>
+                              <CheckBox fx:id="isPercentualeChiusura" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                              <CheckBox fx:id="isPercentualeHandling" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </GridPane>
+               </content>
+            </Tab>
+            <Tab fx:id="tabLive" text="Live">
+               <content>
+                  <GridPane>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="120.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="- Parametri chiusura e limitazione ente:" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Segoe UI Italic" size="17.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <GridPane GridPane.rowIndex="4">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" prefWidth="30.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Button fx:id="btnResetParametriLive" maxWidth="-Infinity" mnemonicParsing="false" onAction="#resetParametriLive" prefWidth="300.0" style="-fx-background-color: darkred;" text="TERMINA SIMULAZIONE" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <padding>
+                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="15.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Button fx:id="btnStartLive" maxWidth="-Infinity" mnemonicParsing="false" onAction="#startLive" prefWidth="300.0" style="-fx-background-color: green;" text="AVVIA SIMULAZIONE" textFill="WHITE" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <padding>
+                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="15.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </Button>
+                           </children>
+                        </GridPane>
+                        <TextArea fx:id="txtResultLive" editable="false" prefHeight="30.0" prefWidth="200.0" promptText="Elenco contromisure inserite e enti chiusi..." style="-fx-background-color: white; -fx-border-width: 0;" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Courier New Bold" size="13.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </GridPane.margin>
+                        </TextArea>
+                        <GridPane GridPane.rowIndex="2">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="40.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="40.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="5.0" prefWidth="5.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="Ente:" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Tipo Ente:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox fx:id="boxTipoEnteChiusuraLive" onAction="#tipoEnteChiusuraLive" prefWidth="400.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </ComboBox>
+                              <Label text="Contromisura:" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox fx:id="boxEnteChiusuraLive" prefWidth="400.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </ComboBox>
+                              <Label text="Chiusura" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="btnAddChiusuraLive" mnemonicParsing="false" onAction="#addChiusuraLive" style="-fx-background-color: green;" text="+" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Courier New Bold" size="15.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Button fx:id="btnRemoveChiusuraLive" mnemonicParsing="false" onAction="#removeChiusuraLive" style="-fx-background-color: darkred;" text="-" textFill="WHITE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Courier New Bold" size="15.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <ComboBox fx:id="boxHandlingLive" prefWidth="400.0" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </ComboBox>
+                              <ComboBox fx:id="boxTipoEnteHandlingLive" onAction="#tipoEnteHandlingLive" prefWidth="400.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </ComboBox>
+                              <ComboBox fx:id="boxEnteHandlingLive" prefWidth="400.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </ComboBox>
+                              <Button fx:id="btnAddHandlingLive" mnemonicParsing="false" onAction="#addHandlingLive" style="-fx-background-color: green;" text="+" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Courier New Bold" size="15.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnRemoveHandlingLive" mnemonicParsing="false" onAction="#removeHandlingLive" style="-fx-background-color: darkred;" text="-" textFill="WHITE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Courier New Bold" size="15.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </GridPane>
+               </content>
+            </Tab>
+            <Tab fx:id="tabRisultati" text="Risultati">
+               <content>
+                  <GridPane>
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="160.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <GridPane>
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Giorno:">
+                                 <font>
+                                    <Font name="Segoe UI Italic" size="17.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label text="Terminata:" GridPane.columnIndex="2">
+                                 <font>
+                                    <Font name="Segoe UI Italic" size="17.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label fx:id="txtGornoRisultato" text="n.d." GridPane.columnIndex="1">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label fx:id="txtIsTerminata" text="n.d." GridPane.columnIndex="3">
+                                 <font>
+                                    <Font name="Courier New Bold" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                           </children>
+                        </GridPane>
+                        <GridPane GridPane.rowIndex="1">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="50.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="150.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="80.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="Aggregazione:" GridPane.columnIndex="2">
+                                 <font>
+                                    <Font name="Segoe UI Italic" size="17.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label text="Ente:" GridPane.columnIndex="4">
+                                 <font>
+                                    <Font name="Segoe UI Italic" size="17.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <ComboBox fx:id="boxScegliAggregazioneRisultato" onAction="#scegliAggregazioneRisultato" prefWidth="150.0" GridPane.columnIndex="3">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </ComboBox>
+                              <ComboBox fx:id="boxScegliEnteRisultato" onAction="#scegliEnteRisultato" prefWidth="150.0" GridPane.columnIndex="5">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </ComboBox>
+                              <Label text="Nazionale:" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Segoe UI Italic" size="17.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <CheckBox fx:id="nazionale" mnemonicParsing="false" onAction="#isNazionale" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                           </children>
+                        </GridPane>
+                        <GridPane GridPane.rowIndex="3">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <GridPane>
+                                <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label text="SANO" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label fx:id="result03" text="-" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label fx:id="result02" text="-" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label fx:id="result01" text="-" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label fx:id="result00" text="-" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label text="MORTO" GridPane.columnIndex="6" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label text="CURATO" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label text="MALATO" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label text="GUARITO" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label text="CONTAGIOSO" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label text="Età [0-20]" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label text="Età [20-65]" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label text="Età [65-...]" GridPane.rowIndex="3">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label fx:id="result04" text="-" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label fx:id="result24" text="-" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label fx:id="result15" text="-" GridPane.columnIndex="6" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="10.0" right="10.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label fx:id="result05" text="-" GridPane.columnIndex="6" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="10.0" right="10.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label fx:id="result14" text="-" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label fx:id="result23" text="-" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label fx:id="result13" text="-" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label fx:id="result22" text="-" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label fx:id="result12" text="-" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label fx:id="result21" text="-" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label fx:id="result11" text="-" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label fx:id="result20" text="-" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label fx:id="result10" text="-" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label fx:id="result25" text="-" GridPane.columnIndex="6" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Courier New Bold" size="13.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="10.0" right="10.0" />
+                                       </padding>
+                                    </Label>
+                                 </children>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </GridPane>
+                           </children>
+                        </GridPane>
+                        <Label text="Report simulazione:" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="Segoe UI Italic" size="17.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <TextArea fx:id="txtResultRisultati" editable="false" prefHeight="30.0" prefWidth="200.0" promptText="Report..." style="-fx-background-color: white; -fx-border-width: 0;" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="Courier New Bold" size="13.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </GridPane.margin>
+                        </TextArea>
+                     </children>
+                  </GridPane>
+               </content></Tab>
+        </tabs>
+      </TabPane>
    </center>
+   <bottom>
+      <Label style="-fx-background-color: white;" text="-LD" textFill="#f5780f" BorderPane.alignment="CENTER_RIGHT">
+         <BorderPane.margin>
+            <Insets right="2.0" />
+         </BorderPane.margin>
+         <font>
+            <Font name="Calibri Italic" size="11.0" />
+         </font>
+      </Label>
+   </bottom>
 </BorderPane>

@@ -1,0 +1,49 @@
+MODELLO:
+
+(CONTAGIOSI = INFETTI  non conoscibili)
+
+#Nuovi
+1) SANI -> CONTAGIOSI
+
+#Rimossi
+2) CONTAGIOSI -> GUARITI		30% #R (Asintomatici)	-> Fuori statistiche ufficiali
+3) CONTAGIOSI -> MALATI			70% #R (Sintomatici)
+
+4) MALATI -> CURATI				95% #M (Curati)
+5) MALATI -> MORTI				05% #M (Morti)			-> Tasso mortalità (misurato, non stimato)
+
+(Ipotesi ondata breve: No GUARITI -> SANI)
+
+--> SIR
+
+
+Ciclo archi:
+	Sommatoria(Nodi adiacenti) [(CONTAGIOSI / FREE)]
+
+
+
+
+
+
+
+
+
+
+
+b = tasso infezione
+tasso contagi = tasso contatto c / totPop
+
+y = tasso guarigione (o morte)
+1/y = tempo medio da malato
+
+numero incontri
+
+S * r = I
+I * y = R
+
+
+
+Tasso contagi r0 adjustement:
+
+- densityRatio iniziale
+- 
