@@ -80,18 +80,44 @@ public class ParametriMondo {
 		percentualeMobilitaContainer.get(agg).put(ag, perc);
 	}
 
-	public Map <AgeGroup, Double> getPercentualeImmobilita() {
+	public Map <AggregationType, Map <AgeGroup, Double>> getPercentualeImmobilita() {
+		 Map <AggregationType, Map <AgeGroup, Double>> ritornoFinale = new HashMap<>();
+		 
+		//COMUNI
 		Map <AgeGroup, Double> ritorno = new HashMap<>();
 		for (AgeGroup ag : AgeGroup.values()) {
-			double perc = 0.0;
-			for (Map <AgeGroup, Double> mappa : percentualeMobilitaContainer.values()) {
-				perc += mappa.get(ag);
+			double percComune = 0.0;
+			for (AggregationType agg : AggregationType.values()) {
+				Map <AgeGroup, Double> mappa = percentualeMobilitaContainer.get(agg);
+				percComune += mappa.get(ag);
 			}
-			ritorno.put(ag, 1- perc);
+			ritorno.put(ag, 1- percComune);
 		}
-		return ritorno;
+		ritornoFinale.put(AggregationType.COMUNE, new HashMap<>(ritorno));
+		
+		//PROVINCE
+		ritorno = new HashMap<>();
+		for (AgeGroup ag : AgeGroup.values()) {
+			double percProvincia = 0.0;
+			for (AggregationType agg : AggregationType.values()) {
+				Map <AgeGroup, Double> mappa = percentualeMobilitaContainer.get(agg);
+				if (agg != AggregationType.COMUNE)
+					percProvincia += mappa.get(ag);
+			}
+			ritorno.put(ag, 1- percProvincia);
+		}
+		ritornoFinale.put(AggregationType.PROVINCIA, new HashMap<>(ritorno));
+
+		//REGIONI
+		ritorno = new HashMap<>();
+		for (AgeGroup ag : AgeGroup.values()) {
+			double percRegione = 0.0;
+			Map <AgeGroup, Double> mappa = percentualeMobilitaContainer.get(AggregationType.REGIONE);
+			percRegione += mappa.get(ag);
+			ritorno.put(ag, 1- percRegione);
+		}
+		ritornoFinale.put(AggregationType.REGIONE, new HashMap<>(ritorno));
+		
+		return ritornoFinale;
 	}
-	
-	
-	
 }

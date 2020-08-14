@@ -245,12 +245,13 @@ public class StatisticheEnte {
 	 * 		nel risultato.
 	 * @return Mappa: Eta' -> Popolazione nelle fasce indicate
 	 */
-	public Map <AgeGroup, Double> getNumPopulationFromStatiForIteration(Status[] stati, Map <AgeGroup, Double> percImmobilita) {
+	public Map <AgeGroup, Double> getNumPopulationFromStatiForIteration(Status[] stati, Map <AggregationType, Map <AgeGroup, Double>> percImmobilita) {
 		Map <AgeGroup, Double> nStati = new HashMap<>();
 		for (AgeGroup ag : AgeGroup.values()) {
 			double cnt = 0.0;
-			for (Status st : stati)
-				cnt += (double) informazioniEnte[rowAgeGroup.get(ag)][colStatus.get(st)]*percImmobilita.get(ag) + informazioniVicini[rowAgeGroup.get(ag)][colStatus.get(st)];
+			for (Status st : stati) {
+				cnt += (double) informazioniEnte[rowAgeGroup.get(ag)][colStatus.get(st)]*percImmobilita.get(agg).get(ag) + informazioniVicini[rowAgeGroup.get(ag)][colStatus.get(st)];
+			}
 			nStati.put(ag, cnt);
 		}
 		return nStati;

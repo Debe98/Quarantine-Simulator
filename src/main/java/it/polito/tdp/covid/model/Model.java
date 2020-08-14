@@ -161,54 +161,26 @@ public class Model {
 		this.queue.clear();
 	}
 
-	public void run() {
+	public void flushNuovi() {
 		AggregationType agg = parSimulazione.getAggSimulazione();
+		System.out.println(valoriT0);
 		for (String ref : valoriT0.keySet())
 			aggiornamentoEnte(agg, ref, Status.CONTAGIOSO, valoriT0.get(ref));
 		valoriT0.clear();
-		
-		/*
-		queue.add(new Event(EventType.NUOVO_GIORNO, giornoCorrente));
-		
-		System.out.println(giornoCorrente+" - "+verificaContinuazione());
-		while (verificaContinuazione()
-				// && !queue.isEmpty() && i<150
-				) {
-			Event e = this.queue.poll();
-			//System.out.println(e);
-			processEvent(e);
-			queue.add(new Event(EventType.NUOVO_GIORNO, giornoCorrente));
-		}
-		*/
-		iterazione();
-		
-		System.out.println("Giorno fine: "+giornoCorrente);
-		/*
-		for (String s : parSimulazione.getReport())
-			System.out.println(s+"\n");
-		System.out.println(statsNazione);
-		*/
 	}
 	
-	/*
-	private void processEvent(Event e) {
-		switch(e.getType()) {
-
-		case NUOVO_GIORNO:
-			iterazione();
-			break;
-
-		case STOP:
-
-			break;
-
-		case TERMINA:
-
-			break;
-		}
-
+	public void run() {
+		iterazione();
+		//System.out.println("Giorno: "+giornoCorrente);
 	}
-	*/
+	
+	public void terminaSimulazione() {
+		simulazioneAttiva = false;
+		giornoUltimoStop = 0;
+		giornoCorrente = 0;
+		inizializzaMappeStatistiche();
+		this.queue.clear();
+	}
 	
 	public void aggiornamentoEnte(AggregationType agg, String ref, Status st, Map<AgeGroup, Integer> nuoviPerGruppo) {
 		int nuovi = nuoviPerGruppo.get(AgeGroup.SCUOLA) + 
@@ -273,7 +245,7 @@ public class Model {
 	public void iterazione() {
 		giornoCorrente++;
 		System.out.println("Giorno: "+giornoCorrente);
-		Map <AgeGroup, Double> percImm = parMondo.getPercentualeImmobilita();
+		Map <AggregationType, Map <AgeGroup, Double>> percImm = parMondo.getPercentualeImmobilita();
 		//System.out.println("perc imm : " + percImm);
 		switch (parSimulazione.getAggSimulazione()) {
 		case COMUNE:
@@ -300,7 +272,7 @@ public class Model {
 		//checkCondizioniTerm();
 	}
 	
-	public void dailyEvolution(StatisticheEnte stats, double densita, Map <AgeGroup, Double> percImm) {
+	public void dailyEvolution(StatisticheEnte stats, double densita, Map <AggregationType, Map <AgeGroup, Double>> percImm) {
 		ChanceType ct = parSimulazione.getTipoProbabilita();
 		System.out.println(stats.getRef());
 		
@@ -687,6 +659,8 @@ public class Model {
 		isChiusoContainer.put(AggregationType.COMUNE, isChiusoComune);
 		isChiusoContainer.put(AggregationType.PROVINCIA, isChiusoProvincia);
 		isChiusoContainer.put(AggregationType.REGIONE, isChiusoRegione);
+		
+		parSimulazione.resetToNewSimulation();
 		
 		switch (parSimulazione.getAggSimulazione()) {
 		case COMUNE:

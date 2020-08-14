@@ -226,6 +226,9 @@ public class FXMLController {
     private ComboBox<SimulationType> boxTipoSimulazione;
 
     @FXML
+    private Button btnAddNewCont;
+    
+    @FXML
     private Button btnResetSimulazione;
 
     @FXML
@@ -869,6 +872,43 @@ public class FXMLController {
     }
     
     @FXML
+    void addNewCont(ActionEvent event) {
+    	txtResultSimulazione.setText("");
+    	try {
+    		if (txtNuoviScuola.getText().equals(""))
+    			txtNuoviScuola.setText((int)(11*Math.random()+1)+"");
+    		if (txtNuoviLavoro.getText().equals(""))
+    			txtNuoviLavoro.setText((int)(11*Math.random()+1)+"");
+    		if (txtNuoviPensione.getText().equals(""))
+    			txtNuoviPensione.setText((int)(11*Math.random()+1)+"");
+    		
+    		
+    		Map <AgeGroup, Integer> temp = new HashMap<>();
+    		temp.put(AgeGroup.SCUOLA, checkNumeroIntero(txtNuoviScuola.getText()));
+    		temp.put(AgeGroup.LAVORO, checkNumeroIntero(txtNuoviLavoro.getText()));
+    		temp.put(AgeGroup.PENSIONE, checkNumeroIntero(txtNuoviPensione.getText()));
+    		
+    		if (boxNuovi.getValue() == null)
+    			throw new Exception("Errore: nessun ente inserito!");
+    		
+    		model.setNuoviContagi(boxNuovi.getValue(), temp);
+    	} catch (Exception e) {
+    		txtResultSimulazione.appendText("% Nuovi: "+e.getMessage()+"\n");
+		}
+    	
+    	txtNuoviScuola.setText("");
+    	txtNuoviLavoro.setText("");
+    	txtNuoviPensione.setText("");
+    	randomNuovi.setSelected(true);
+    	randomizer();
+    	
+    	txtResultSimulazione.appendText("Focolai giorno 0:\n");
+    	for (String s : model.getNuoviContagi()) {
+    		txtResultSimulazione.appendText(s+"\n");
+    	}
+    }
+    
+    @FXML
     void aggiornaSimulazione(ActionEvent event) {
     	ParametriSimulazione parSimulazione = model.getParSimulazione();
     	txtResultSimulazione.clear();
@@ -913,34 +953,6 @@ public class FXMLController {
     		txtResultSimulazione.appendText("Attenzione, questo tipo di simulazione è estremamente pesante\n"
     				+ "Se usata per simulare un'intera pandemia potrebbe richiedere molto tempo!\n");
     	}
-    	
-    	try {
-    		if (txtNuoviScuola.getText().equals(""))
-    			txtNuoviScuola.setText((int)(11*Math.random()+1)+"");
-    		if (txtNuoviLavoro.getText().equals(""))
-    			txtNuoviLavoro.setText((int)(11*Math.random()+1)+"");
-    		if (txtNuoviPensione.getText().equals(""))
-    			txtNuoviPensione.setText((int)(11*Math.random()+1)+"");
-    		
-    		
-    		Map <AgeGroup, Integer> temp = new HashMap<>();
-    		temp.put(AgeGroup.SCUOLA, checkNumeroIntero(txtNuoviScuola.getText()));
-    		temp.put(AgeGroup.LAVORO, checkNumeroIntero(txtNuoviLavoro.getText()));
-    		temp.put(AgeGroup.PENSIONE, checkNumeroIntero(txtNuoviPensione.getText()));
-    		
-    		if (boxNuovi.getValue() == null)
-    			throw new Exception("Errore: nessun ente inserito!");
-    		
-    		model.setNuoviContagi(boxNuovi.getValue(), temp);
-    	} catch (Exception e) {
-    		txtResultSimulazione.appendText("% Nuovi: "+e.getMessage()+"\n");
-		}
-    	
-    	txtNuoviScuola.setText("");
-    	txtNuoviLavoro.setText("");
-    	txtNuoviPensione.setText("");
-    	randomNuovi.setSelected(true);
-    	randomizer();
     	
     	txtResultSimulazione.appendText("Focolai giorno 0:\n");
     	for (String s : model.getNuoviContagi()) {
@@ -1066,12 +1078,7 @@ public class FXMLController {
     
     @FXML
     void resetParametrizzata(ActionEvent event) {
-    	
-    	//LALALAL
-    	
-    	
     	utilNewSimulazione(event);
-    	
     	
     	handleParametrizzata();
     	handleChiusureHandling();
@@ -1083,6 +1090,7 @@ public class FXMLController {
     	if (!model.isSimulazioneAttiva()) {
     		model.startSimulazione();
     	}
+    	model.flushNuovi();
     	while (model.verificaContinuazione()) {
     		model.run();
     	}
@@ -1186,6 +1194,7 @@ public class FXMLController {
     @FXML
     void resetParametriLive(ActionEvent event) {
     	utilNewSimulazione(event);
+    	model.inizializzaMappeStatistiche();
     	//TERMINA
     	handleLive();
     	//RIMUOVERE TUTTI I 
@@ -1197,6 +1206,7 @@ public class FXMLController {
     	if (!model.isSimulazioneAttiva()) {
     		model.startSimulazione();
     	}
+    	model.flushNuovi();
     	while (model.verificaContinuazione()) {
     		model.run();
     	}
@@ -1366,7 +1376,8 @@ public class FXMLController {
     	tabGrafici.setDisable(false);
     	tabGrafici2.setDisable(false);
     	
-    	btnAggiornaSimulazione.setDisable(true);
+    	boxTipoSimulazione.setDisable(true);
+    	boxProbabilita.setDisable(true);
     	btnResetSimulazione.setDisable(true);
     	
     	if (!model.isSimulazioneAttiva()) {
@@ -1376,9 +1387,7 @@ public class FXMLController {
     }
     
     void utilNewSimulazione(ActionEvent event) {
-    	model.inizializzaMappeStatistiche();
-    	model.getParSimulazione().resetToNewSimulation();
-    	model.setSimulazioneAttiva(false);
+    	model.terminaSimulazione();
     	resetSimulazione(event);
     	
     	tabHome.setDisable(false);
@@ -1391,7 +1400,8 @@ public class FXMLController {
     	tabGrafici.setDisable(true);
     	tabGrafici2.setDisable(true);
     	
-    	btnAggiornaSimulazione.setDisable(false);
+    	boxTipoSimulazione.setDisable(false);
+    	boxProbabilita.setDisable(false);
     	btnResetSimulazione.setDisable(false);
     	
     	btnStartLive.setDisable(false);
