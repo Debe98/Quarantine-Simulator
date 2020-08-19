@@ -1,6 +1,6 @@
 # Debernardi Luca - Quarantine Simulator
 
-### Sessione di Laurea: Settembre 2020 (PoliTO)
+`Sessione di Laurea: Settembre 2020 (PoliTO)`
 
 ## Istruzioni per l'installazione e l'utilizzo dell'applicazione:
 
@@ -16,4 +16,4 @@
 
 5) Fare il vaccino per il Coronavirus
 
-6) *Divertirsi!*
+6) `Divertirsi!`
