@@ -14,6 +14,6 @@
 
 4) Caricare il file enti_italiani.sql, contenuto nella cartella "db", sul proprio database MySQL.
 
-5) Fare il vaccino per il Coronavirus
+5) Fare il vaccino per il Coronavirus.
 
 6) `Divertirsi!`
