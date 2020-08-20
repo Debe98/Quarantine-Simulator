@@ -10,7 +10,7 @@
 
 3) Visionare il video di presentazione, URI: https://youtu.be/bRDcXdKuuVo ;
 
-4) Importare il progetto Maven nel proprio IDE preferito;     _(IDE testati: Eclipse)_
+4) Importare il progetto Maven nel proprio IDE preferito _(IDE testati: Eclipse)_;
 
 5) Caricare il file enti_italiani.sql, contenuto nella cartella "db", sul proprio database MySQL;
 
