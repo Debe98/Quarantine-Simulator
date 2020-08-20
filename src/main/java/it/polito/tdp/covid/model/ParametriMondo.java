@@ -1,6 +1,7 @@
 package it.polito.tdp.covid.model;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import it.polito.tdp.covid.model.TypedWeightedEdge.AggregationType;
@@ -119,5 +120,14 @@ public class ParametriMondo {
 		ritornoFinale.put(AggregationType.REGIONE, new HashMap<>(ritorno));
 		
 		return ritornoFinale;
+	}
+
+	public double getPercentualeImmobilitaNetta(AgeGroup ag) {
+		double temp = 0.0;
+		for (AggregationType agg : AggregationType.values()) {
+			Map <AgeGroup, Double> mappa = percentualeMobilitaContainer.get(agg);
+			temp += mappa.get(ag);
+		}
+		return (1-temp);
 	}
 }

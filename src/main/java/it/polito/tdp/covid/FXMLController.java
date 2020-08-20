@@ -717,9 +717,9 @@ public class FXMLController {
     	txtPensioneAttrProvinciale.setText(String.format("%.2f", parMondo.getPercentualeMobilita(AggregationType.PROVINCIA, AgeGroup.PENSIONE))+"");
     	txtPensioneAttrRegionale.setText(String.format("%.2f", parMondo.getPercentualeMobilita(AggregationType.REGIONE, AgeGroup.PENSIONE))+"");
     	
-    	txtScuolaNoShift.setText(String.format("%.2f", parMondo.getPercentualeImmobilita().get(AgeGroup.SCUOLA))+"");
-    	txtLavoroNoShift.setText(String.format("%.2f", parMondo.getPercentualeImmobilita().get(AgeGroup.LAVORO))+"");
-    	txtPensioneNoShift.setText(String.format("%.2f", parMondo.getPercentualeImmobilita().get(AgeGroup.PENSIONE))+"");
+    	txtScuolaNoShift.setText(String.format("%.2f", parMondo.getPercentualeImmobilitaNetta(AgeGroup.SCUOLA))+"");
+    	txtLavoroNoShift.setText(String.format("%.2f", parMondo.getPercentualeImmobilitaNetta(AgeGroup.LAVORO))+"");
+    	txtPensioneNoShift.setText(String.format("%.2f", parMondo.getPercentualeImmobilitaNetta(AgeGroup.PENSIONE))+"");
     }   
     
     @FXML
