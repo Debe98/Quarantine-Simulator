@@ -52,7 +52,7 @@
                               <Font name="Segoe UI Bold Italic" size="20.0" />
                            </font>
                         </Label>
-                        <TextArea editable="false" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-width: 0;" text="Università:   Politecnico di Torino&#10;Corso:        Ingegneria Gestionale, percorso dell'informazione (L-8)&#10;Progetto:     Tesi di Laurea Triennale&#10;Anno:         2020&#10;Studente:     Luca Debernardi (s244685)&#10;Scopo:        Fornire uno strumento utile alla simulazione di un epidemia sul&#10;              territorio nazionale." GridPane.rowIndex="2">
+                        <TextArea editable="false" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-width: 0;" text="Università:   Politecnico di Torino&#10;Corso:        Ingegneria Gestionale, percorso dell'informazione (L-8)&#10;Progetto:     Tesi di Laurea Triennale&#10;Anno:         2020&#10;Studente:     Luca Debernardi (s244685)&#10;Scopo:        Fornire uno strumento utile alla simulazione di un'epidemia sul&#10;              territorio nazionale." GridPane.rowIndex="2">
                            <font>
                               <Font name="Courier New Bold" size="13.0" />
                            </font>
