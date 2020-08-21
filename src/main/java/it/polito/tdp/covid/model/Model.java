@@ -274,7 +274,7 @@ public class Model {
 	
 	public void dailyEvolution(StatisticheEnte stats, double densita, Map <AggregationType, Map <AgeGroup, Double>> percImm) {
 		ChanceType ct = parSimulazione.getTipoProbabilita();
-		System.out.println(stats.getRef());
+		//System.out.println(stats.getRef());
 		
 		// SANI -> CONTAGIOSI
 		double densityRatio = densita / italianAvgDensity;
@@ -337,7 +337,7 @@ public class Model {
 				totSani += saniGruppo.get(ag);
 			}
 
-			System.out.println("Val atteso new #C = " + valAtteso);
+			//System.out.println("Val atteso new #C = " + valAtteso);
 
 			Map <AgeGroup, Double> percPerGruppo = stats.getPercentages(Status.SANO, totSani, parVirus);
 			
@@ -379,7 +379,7 @@ public class Model {
 			
 			stats.checkSani(nuoviContagiatiPerGruppo);
 
-			System.out.println("Effettivi new #C = " + nuoviContagiatiPerGruppo);
+			//System.out.println("Effettivi new #C = " + nuoviContagiatiPerGruppo);
 
 		}
 
